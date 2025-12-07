@@ -1,38 +1,58 @@
-class BankAccount {
-  String _accountNumber;
-  double _balance;
+abstract class FileConverter {
+  void format();
+}
 
-  BankAccount(this._accountNumber, this._balance);
+class PdfFormat implements FileConverter {
+  final String filePath;
 
+  PdfFormat(this.filePath);
 
+  @override
+  void format() {
 
-void deposit(double amount) {
-  if (amount <= 0) {
-    print('Ошибка: Сумма пополнения должна быть положительной');
-    return;
+    print ("Конвертируем $filePath в PDF...");
   }
-  _balance += amount;
-  print('Успешно пополнено: $amount. Новый баланс: $_balance');
 }
 
-void withdraw(double amount) {
-  if (amount <= 0) {
-    print('Ошибка: Сумма снятия должна быть положительной');
-    return;
+class DocxFormat implements FileConverter {
+  final String filePath;
+
+  DocxFormat(this.filePath);
+
+  @override
+  void format() {
+
+    print("Конвертируем $filePath в DOCX...");
   }
-  if (amount > _balance) {
-    print('Ошибка: Недостаточно средств. Текущий баланс: $_balance');
-    return;
+}
+
+class JpgFormat implements FileConverter {
+  final String filePath;
+
+  JpgFormat(this.filePath);
+
+  @override
+  void format() {
+
+    print ("Конвертируем $filePath в JPG...");
   }
-  _balance -= amount;
-  print('Успешно снято: $amount. Новый баланс: $_balance');
 }
 
-double getBalance() {
-  return _balance;
+class FileConversionFile {
+  void convert(FileConverter converter) {
+    converter.format();
+  }
+}
+void main() {
+
+  final file = FileConversionFile();
+
+  final pdf = PdfFormat("document.txt");
+  final docx = DocxFormat("document.txt");
+  final jpg = JpgFormat("img.png");
+
+  file.convert(pdf);
+  file.convert(docx);
+  file.convert(jpg);
 }
 
-void displayAccountInfo() {
-  print('Счет: $_accountNumber, Баланс: $_balance');
-}
-}
