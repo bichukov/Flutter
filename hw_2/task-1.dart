@@ -1,57 +1,70 @@
+
 import 'dart:math';
 
-abstract class Shape {
-  double area();
+class UserManager {
 
-  double perimeter();
+  final Map<String, dynamic> userData;
+
+  UserManager(this.userData);
+
 }
 
-class Circle extends Shape {
-  double radius;
+class UserValidation {
 
-  Circle(this.radius);
-
-  @override
-  double area() => pi * pow(radius, 2);
-
-  @override
-  double perimeter() => 2 * pi * radius;
-}
-
-class Rectangle extends Shape {
-  double width;
-  double height;
-
-  Rectangle(this.width, this.height);
-
-  @override
-  double area() => width * height;
-
-  @override
-  double perimeter() => 2 * (width + height);
-}
-
-class Triangle extends Shape {
-  double stA;
-  double stB;
-  double stC;
-
-  Triangle(this.stA, this.stB, this.stC);
-
-  @override
-  double area() {
-    double st = perimeter() / 2;
-    return sqrt(st * (st - stA) * (st - stB) * (st - stC));
+  validate (Map<String, dynamic> userData) {
+    if (userData['name'] == null || userData['name'].isEmpty) {
+      throw Exception('Имя пользователя не может быть пустым');
+    }
+    if (userData['age'] == null || userData['age'] < 0) {
+      throw Exception('Возраст пользователя не может быть отрицательным');
+    }
   }
 
-  @override
-  double perimeter() => stA + stB + stC;
 }
+
+class UserConversion {
+
+  void conversion (Map<String, dynamic> userData) {
+    userData['name'] = userData['name'].toString().toUpperCase();
+    userData['age'] = userData['age'] + 1; // Увеличиваем возраст на 1
+  }
+
+}
+
+class UserSave {
+  void save (Map<String, dynamic> userData) {
+    print('Данные сохранены: $userData');
+  }
+}
+
+class LogInfo {
+  void log (String message) {
+    print(message);
+  }
+}
+
+class FullProcessor {
+  final UserValidation validation = UserValidation();
+  final UserConversion conversion = UserConversion();
+  final UserSave save = UserSave();
+  final LogInfo info =LogInfo ();
+
+  void processor (Map<String, dynamic> userData) {
+    validation.validate(userData);
+    conversion.conversion(userData);
+    save.save(userData);
+    info.log('Данные пользователя успешно обработаны и сохранены');
+
+  }
+
+}
+
 
 void main() {
-  List<Shape> shape = [Circle(15), Rectangle(10, 15), Triangle(5, 10, 7)];
-  for (var value in shape) {
-    print("${value.toString()}: perimeter: ${value.perimeter()}, area: ${value.area()}");
 
-  }
+  final userData = {'name': 'Alice', 'age': 25};
+
+  final processor = FullProcessor();
+  processor.processor(userData);
+
 }
