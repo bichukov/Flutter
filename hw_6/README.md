@@ -1,16 +1,9 @@
 # hw_3
 
-A new Flutter project.
+http - для работы с запросами GET POST и тд.
+А так же для работы с Json и дале в том же духе.
 
-## Getting Started
+json_serializable - преобразования масивов информамации для более удобной передачи и получения
 
-This project is a starting point for a Flutter application.
+path - как я понял это своего рода проводник(как на пк) и ли файловый менеджер для работы с файлами и папками  локально
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

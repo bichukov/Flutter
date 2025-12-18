@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -46,18 +45,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-
       _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
 
         title: Text(widget.title,
           style: TextStyle(fontFamily: 'SpaceAgeCyrillic'),
@@ -69,28 +69,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Значение для счетчика :'),
+        const Text('Значение для счетчика :',
+          style: TextStyle(
+          fontSize: 20,
+        ),),
 
-            Image.asset(
-              'assets/images/planety.jpg',
-              width: 250,
-              fit: BoxFit.cover,
-            ),
-
-            const SizedBox(height: 20),
-
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+      Image.asset(
+        'assets/images/planety.jpg',
+        width: double.infinity,
+        fit: BoxFit.cover,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      const SizedBox(height: 20),
+
+      Text(
+        '$_counter',
+        style: Theme
+            .of(context)
+            .textTheme
+            .headlineMedium,
+      ),
+      ],
+    ),
+    ),
+    floatingActionButton: FloatingActionButton(
+    onPressed: _incrementCounter,
+    tooltip: 'Increment',
+    child: const Icon(Icons.add),
+    ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
